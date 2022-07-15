@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 1,
-  "iteration": 1579257801103,
+  "id": 28,
+  "iteration": 1657888083185,
   "links": [],
   "panels": [
     {
@@ -719,6 +719,7 @@
         "y": 4
       },
       "id": 2,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -729,6 +730,8 @@
         "min": true,
         "rightSide": true,
         "show": true,
+        "sort": "avg",
+        "sortDesc": false,
         "total": false,
         "values": true
       },
@@ -776,7 +779,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT percentile(\"response_time\", $percentile) FROM \"$test\" WHERE \"simulation\"='$test' AND \"test_type\"='$test_type' AND  \"env\"='$env' and \"status\"='OK' AND sampler_type=~ /^$sampler_type$/ AND $timeFilter GROUP BY time($grouping), request_name fill(none)",
+          "query": "SELECT \"response_time\" FROM /^$test$/ WHERE \"simulation\"='$test' AND \"test_type\"='$test_type' AND  \"env\"='$env' and \"status\"='OK' AND sampler_type=~ /^$sampler_type$/ AND $timeFilter GROUP BY request_name",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -815,7 +818,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT percentile(\"response_time\", $percentile) FROM \"$test\" WHERE \"simulation\"='$test' AND \"test_type\"='$test_type' AND  \"env\"='$env' and \"status\"='KO' AND sampler_type=~ /^$sampler_type$/ AND $timeFilter GROUP BY time($grouping), request_name fill(null)",
+          "query": "SELECT  \"response_time\" FROM \"$test\" WHERE \"simulation\"='$test' AND \"test_type\"='$test_type' AND  \"env\"='$env' and \"status\"='KO' AND sampler_type=~ /^$sampler_type$/ AND $timeFilter GROUP BY request_name fill(null)",
           "rawQuery": true,
           "refId": "C",
           "resultFormat": "time_series",
@@ -879,7 +882,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Response Times Over Time ($grouping aggregation)",
+      "title": "Response Times Over Time (no aggregation)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1598,7 +1601,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 37
+            "y": 49
           },
           "id": 19,
           "mode": "html",
@@ -1665,6 +1668,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "baseline",
           "value": "baseline"
         },
@@ -1690,8 +1694,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "folio",
-          "value": "folio"
+          "selected": false,
+          "text": "circulation_checkInCheckOut",
+          "value": "circulation_checkInCheckOut"
         },
         "datasource": "jmeter",
         "definition": "SHOW TAG VALUES FROM /.*/ WITH KEY = \"simulation\"",
@@ -1715,6 +1720,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "int",
           "value": "int"
         },
@@ -1742,6 +1748,7 @@
         "auto_count": 1,
         "auto_min": "1s",
         "current": {
+          "selected": true,
           "text": "1s",
           "value": "1s"
         },
@@ -1842,7 +1849,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "700",
           "value": "700"
         },
@@ -1883,6 +1890,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -1908,8 +1916,8 @@
     ]
   },
   "time": {
-    "from": "2020-01-16T15:47:22.150Z",
-    "to": "2020-01-16T16:52:52.613Z"
+    "from": "2022-07-15T10:27:00.414Z",
+    "to": "2022-07-15T10:29:18.332Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1938,6 +1946,6 @@
   },
   "timezone": "",
   "title": "Jmeter Performance",
-  "uid": "q69rYQlik",
-  "version": 10
+  "uid": "elIt9zCnz",
+  "version": 17
 }
